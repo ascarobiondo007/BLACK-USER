@@ -1,0 +1,46 @@
+/repos /{owner} /{repo} /secret-scanning /alerts /{alert_number} /locations
+# GitHub CLI api
+# https://cli.github.com/manual/gh_api
+
+gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /repos/OWNER/REPO/secret-scanning/alerts/ALERT_NUMBER/locations
+  {
+  "type": "array",
+  "description": "List of locations where the secret was detected",
+  "items": {
+    "type": "object",
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": [
+          "commit",
+          "issue_title",
+          "issue_body",
+          "issue_comment"
+        ],
+        "description": "The location type. Because secrets may be found in different types of resources (ie. code, comments, issues), this field identifies the type of resource where the secret was found.",
+        "examples": [
+          "commit"
+        ]
+      },
+      "details": {
+        "oneOf": [
+          {
+            "description": "Represents a 'commit' secret scanning location type. This location type shows that a secret was detected inside a commit to a repository.",
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "The file path in the repository",
+                "examples": [
+                  "/example/secrets.txt"
+                ]
+              },
+              "start_line": {
+                "type": "number",
+                "description": "Line number at which the secret starts in the file"
+              },
+              "end_line": {
+                "type": "number",
