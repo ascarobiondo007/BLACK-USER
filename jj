@@ -1,0 +1,24 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.autoSave": "afterDelay",
+    "launch": {
+        "configurations": [
+        {
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/app.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+            curl https://api.example.com/  jq
+
+        }jq '.status'
+        ]
+    }
+    jq '.[0].name'
+
+}jq '.[] | select(.name | contains("Leanne"))'
+cat json | jq '.[0] | {name: .name, company: .company}'
+curl https://api/example.com/ > json.txt
+grep "name" | sed 's/"name": "(.*)"/1/'
